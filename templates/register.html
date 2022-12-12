@@ -1,0 +1,286 @@
+<!-- made by : https://codepen.io/bradtraversy/pen/gvMGyB -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+    /* CSS Variables */
+    :root {
+    --primary: #ddd;
+    --dark: #333;
+    --light: #fff;
+    --shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
+    }
+    
+    html {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--dark);
+    }
+    
+    body {
+    background: #ccc;
+    margin: 30px 50px;
+    line-height: 1.4;
+    }
+    
+    .btn {
+    background: var(--dark);
+    color: var(--light);
+    padding: 0.6rem 1.3rem;
+    text-decoration: none;
+    border: 0;
+    }
+    
+    img {
+    max-width: 100%;
+    }
+    
+    .wrapper {
+    display: grid;
+    grid-gap: 20px;
+    }
+    
+    /* Navigation */
+    .main-nav ul {
+    display: grid;
+    grid-gap: 20px;
+    padding: 0;
+    list-style: none;
+    grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .main-nav a {
+    background: var(--primary);
+    display: block;
+    text-decoration: none;
+    padding: 0.8rem;
+    text-align: center;
+    color: var(--dark);
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    box-shadow: var(--shadow);
+    }
+    
+    .main-nav a:hover {
+    background: var(--dark);
+    color: var(--light);
+    }
+    
+    /* Top Container */
+    .top-container {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-areas:
+        'showcase showcase top-box-a'
+        'showcase showcase top-box-b';
+    }
+    
+    /* Showcase */
+    .showcase {
+    grid-area: showcase;
+    min-height: 400px;
+    
+    background-size: cover;
+    background-position: center;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    box-shadow: var(--shadow);
+    }
+    
+    .showcase h1 {
+    font-size: 4rem;
+    margin-bottom: 0;
+    color: var(--light);
+    }
+    
+    .showcase p {
+    font-size: 1.3rem;
+    margin-top: 0;
+    color: var(--light);
+    }
+    
+    /* Top Box */
+    .top-box {
+    background: var(--primary);
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+    }
+    
+    .top-box .price {
+    font-size: 2.5rem;
+    }
+    
+    .top-box-a {
+    grid-area: top-box-a;
+    }
+    
+    .top-box-b {
+    grid-area: top-box-b;
+    }
+    
+    /* Info */
+    .info {
+    background: var(--primary);
+    box-shadow: var(--shadow);
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 3rem;
+    }
+    
+    /* Footer */
+    footer {
+    margin-top: 2rem;
+    background: var(--dark);
+    color: var(--light);
+    text-align: center;
+    padding: 1rem;
+    font-size: 32px;
+    }
+    
+    /* Media Queries */
+    @media (max-width: 700px) {
+    .top-container {
+        grid-template-areas:
+        'showcase showcase'
+        'top-box-a top-box-b';
+    }
+    
+    .showcase h1 {
+        font-size: 2.5rem;
+    }
+    
+    .main-nav ul {
+        grid-template-columns: 1fr;
+    }
+    
+    }
+    
+    @media (max-width: 500px) {
+    .top-container {
+        grid-template-areas:
+        'showcase'
+        'top-box-a'
+        'top-box-b';
+    }
+    }
+    
+
+</style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">    
+</head>    
+<body>    
+<div class="wrapper">
+    <!-- Navigation -->
+    <nav class="main-nav">
+      <ul>
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="attendance">Attendance</a>
+        </li>
+        <li>
+          <a href="login">Login</a>
+        </li>
+        <li>
+          <a href="member">AboutUs</a>
+        </li>
+      </ul>
+    </nav>
+    
+    <!-- Top Container -->
+    <section class="top-container">
+      <header class="showcase">
+        <img src="{{ url_for('camera_feed') }}" width="100%">
+      </header>
+      <!-- <div class="top-box top-box-a">
+        <h4>출석체크</h4>
+        <p class="price">$199/mo</p>
+        <a href="" class="btn">Buy Now</a>
+      </div> -->
+    <form class="db" id='regForm'>
+      <div class="container">
+        <br>
+        <h1 class="text-center"><a href="#">신규 등록</a></h1>
+        <br>
+        <br>
+  
+        <table class="table table-hover table-striped text-center" style="border: 1px solid;">
+            <thead>
+                <tr>
+                    <th>이름</th>
+                    <th>클래스</th>
+                    <th>생일</th>
+                    <th>성별</th>
+                    <th>출석</th>
+                </tr>
+            </thead>
+    
+            <tbody>
+                <tr>
+                    <td><input type="text" name="name"></td>
+                    <td><input type="text" name="my_class"></td>
+                    <td><input type="datetime" name="birdate"></td>
+                    <td><input type="text" name="gender"></td>
+                    <td><input type="text" name="abs_rate"></td>
+                </tr>
+            </tbody>
+  
+  
+        </table>
+        <button class="btn" type="submit">Register</button>
+      </div>
+    </form>
+    <script>
+      $('#regForm').on('submit', (evt)=>{
+        evt.preventDefault();
+        
+        console.log( $('#regForm').serializeArray() );
+        $.post({
+         url:'/register',
+         data:$('#regForm').serializeArray(),
+         dataType:'json',
+         success:( res )=>{
+           console.log( res )
+           if( res.code == 1){
+            alert('등록성공');
+            // 홈페이지 이동
+            //document.location.href='/'
+            $('[name=name]').val('')
+            $('[name=my_class]').val('')
+            $('[name=birdate]').val('')
+            $('[name=gender]').val('')
+            $('[name=abs_rate]').val('')
+           }else{
+            alert('등록 실패[0], 관리자에게 문의 하세요');
+           }
+         },
+         error:( err )=>{
+          alert('등록 실패[1], 관리자에게 문의 하세요');
+         }
+        })
+        return false;
+      })
+    </script>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>Register completed</p>
+    </footer>
+
+  </div>
+
+</body> 
+</html>

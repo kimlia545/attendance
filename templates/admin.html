@@ -1,0 +1,189 @@
+<!-- made by https://codepen.io/jakestuts/pen/tGpju-->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Oswald:300,400,700);
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  outline: none;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html { overflow-y: scroll; }
+body { 
+  background:  #ccc; 
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 62.5%;
+  line-height: 1;
+  color: #585858;
+  padding: 22px 10px;
+  padding-bottom: 55px;
+}
+
+::selection { background: #5f74a0; color: #fff; }
+::-moz-selection { background: #5f74a0; color: #fff; }
+::-webkit-selection { background: #5f74a0; color: #fff; }
+
+br { display: block; line-height: 1.6em; } 
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
+ol, ul { list-style: none; }
+
+input, textarea { 
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  outline: none; 
+}
+
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+strong, b { font-weight: bold; } 
+
+table { border-collapse: collapse; border-spacing: 0; }
+img { border: 0; max-width: 100%; }
+
+h1 { 
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 3.6em;
+  line-height: 1.7em;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+
+/** page structure **/
+#wrapper {
+  display: block;
+  width: 850px;
+  background: #fff;
+  margin: 0 auto;
+  padding: 10px 17px;
+  -webkit-box-shadow: 2px 2px 3px -1px rgba(0,0,0,0.35);
+}
+
+#keywords {
+  margin: 0 auto;
+  font-size: 1.2em;
+  margin-bottom: 15px;
+}
+
+
+#keywords thead {
+  cursor: pointer;
+  background: #ccc;
+}
+#keywords thead tr th { 
+  font-weight: bold;
+  padding: 12px 30px;
+  padding-left: 42px;
+}
+#keywords thead tr th span { 
+  padding-right: 20px;
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
+}
+
+#keywords thead tr th.headerSortUp, #keywords thead tr th.headerSortDown {
+  background: #ccc;
+}
+
+#keywords thead tr th.headerSortUp span {
+  background-image: url('https://i.imgur.com/SP99ZPJ.png');
+}
+#keywords thead tr th.headerSortDown span {
+  background-image: url('https://i.imgur.com/RkA9MBo.png');
+}
+
+
+#keywords tbody tr { 
+  color: #555;
+}
+#keywords tbody tr td {
+  text-align: center;
+  padding: 15px 10px;
+  font-size: 14px;
+}
+#keywords tbody tr td.lalign {
+  text-align: left;
+}
+
+.home{
+  font-family:'Oswald', sans-serif; font-size:14px; line-height:0; font-weight:400; letter-spacing:8px; text-transform: uppercase; color:black;
+}
+
+.register{
+  font-family:'Oswald', sans-serif; font-size:14px; line-height:5; font-weight:400; letter-spacing:8px; text-transform: uppercase; color:black;
+}
+
+a:link    { color: black; }
+
+</style>
+
+</head>
+<body>
+    <div class="info">
+      <span class="home">
+        <a href="logout">
+        <h3>Log Out</h3>
+        </a>
+      </span>
+      <span class="register">
+        <a href="/register">
+          <h3>Register</h3>
+        </a>
+      </span>
+    </div>   
+    <div id="wrapper">
+     <h1>Student List</h1>
+     
+     <table id="keywords" cellspacing="0" cellpadding="0">
+      <thead>
+        <tr>
+          <th><span>Id</span></th>
+          <th><span>Name</span></th>
+          <th><span>Class</span></th>
+          <th><span>Birthdate</span></th>
+          <th><span>Gender</span></th>
+          <th><span>Attendance rate</span></th>
+        </tr>
+      </thead>
+       <tbody>
+        {% for mb in list %}
+          <tr>
+              <td>{{ mb.no }}</td>
+              <td>{{ mb.name }}</td>
+              <td>{{ mb.class }}</td>
+              <td>{{ mb.birdate }}</td>
+              <td>{{ mb.gender }}</td>
+              <td>{{ mb.abs_rate }}</td>
+          </tr>
+        {% endfor %}
+       </tbody>
+     </table>
+    </div> 
+</body>
+<script>
+    $(function(){
+    $('#keywords').tablesorter(); 
+    });
+</script>
+
+</body>  
+</html>  
