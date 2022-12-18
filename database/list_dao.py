@@ -117,12 +117,5 @@ def call_name():
 
 
 if __name__=='__main__':
-    # print( get_name('김려은') )
-    # call_name()    
-    # register_student('박정미','인공지능','1994-03-30','여')
-    # register_student('오은경','인공지능','1993-06-28','여')
-    # register_student('서현정','인공지능','1994-03-26','여')
-    # register_student('김경률','스마트팩토리','1992-09-23','남')
-    # register_student('제윤태','스마트팩토리','1995-03-30','남')
-    
+   
     pass
